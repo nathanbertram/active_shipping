@@ -39,7 +39,7 @@ module ActiveMerchant
                   b.gsos :OriginZip, origin.postal_code
                   b.gsos :DestinationZip, destination.postal_code
                   b.gsos :PackageWeight, package.pounds.to_i
-                  b.gsos :ShipDate, (DateTime.now.next_week.beginning_of_week + 2.days).xmlschema
+                  b.gsos :ShipDate, (DateTime.now.next_week.beginning_of_week + 10.days).xmlschema
                 }
               }
             }
