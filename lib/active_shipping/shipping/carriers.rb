@@ -1,5 +1,5 @@
+require 'active_shipping/shipping/carriers/benchmark_carrier'
 require 'active_shipping/shipping/carriers/bogus_carrier'
-require 'active_shipping/shipping/carriers/gso'
 require 'active_shipping/shipping/carriers/ups'
 require 'active_shipping/shipping/carriers/usps'
 require 'active_shipping/shipping/carriers/fedex'
@@ -14,7 +14,7 @@ module ActiveMerchant
     module Carriers
       class <<self
         def all
-          [BogusCarrier, UPS, USPS, FedEx, Shipwire, Kunaki, CanadaPost, NewZealandPost, CanadaPostPWS, GSO]
+          [BenchmarkCarrier, BogusCarrier, UPS, USPS, FedEx, Shipwire, Kunaki, CanadaPost, NewZealandPost, CanadaPostPWS]
         end
       end
     end
