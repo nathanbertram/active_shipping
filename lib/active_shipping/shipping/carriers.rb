@@ -15,7 +15,7 @@ module ActiveMerchant
     module Carriers
       class <<self
         def all
-          [BenchmarkCarrier, BogusCarrier, UPS, USPS, FedEx, Shipwire, Kunaki, CanadaPost, NewZealandPost, CanadaPostPWS]
+          [BenchmarkCarrier, BogusCarrier, GSO, UPS, USPS, FedEx, Shipwire, Kunaki, CanadaPost, NewZealandPost, CanadaPostPWS]
         end
       end
     end
