@@ -1,5 +1,5 @@
 lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
+$:.unshift(lib) unless $:.include?(lib)
 
 require 'active_shipping/version'
 
@@ -10,23 +10,24 @@ Gem::Specification.new do |s|
   s.authors     = ["James MacAulay", "Tobi Lutke", "Cody Fauser", "Jimmy Baker"]
   s.email       = ["james@shopify.com"]
   s.homepage    = "http://github.com/shopify/active_shipping"
-  s.summary     = "Shipping API extension for Active Merchant"
-  s.description = "Get rates and tracking info from various shipping carriers."
+  s.summary     = "Simple shipping abstraction library"
+  s.description = "Get rates and tracking info from various shipping carriers. Extracted from Shopify."
+  s.license     = 'MIT'
 
-  s.required_rubygems_version = ">= 1.3.6"
-  s.rubyforge_project         = "active_shipping"
+  s.add_dependency('quantified',    '~> 1.0.1')
+  s.add_dependency('activesupport', '>= 3.2', '< 5.0.0')
+  s.add_dependency('active_utils',  '~> 3.0.0')
+  s.add_dependency('nokogiri',      '>= 1.6')
 
-  s.add_dependency('activesupport', '>= 2.3.5')
-  s.add_dependency('i18n')
-  s.add_dependency('active_utils', '>= 1.0.1')
-  s.add_dependency('builder')
-  s.add_dependency('json', '>= 1.5.1')
-  s.add_dependency('httparty')
-
+  s.add_development_dependency('minitest')
   s.add_development_dependency('rake')
-  s.add_development_dependency('mocha')
+  s.add_development_dependency('mocha', '~> 1')
   s.add_development_dependency('timecop')
+  s.add_development_dependency('business_time')
+  s.add_development_dependency('pry')
 
-  s.files        = Dir.glob("lib/**/*") + %w(MIT-LICENSE README.markdown CHANGELOG)
+  s.files        = `git ls-files`.split($/)
+  s.executables  = s.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  s.test_files   = s.files.grep(%r{^(test|spec|features)/})
   s.require_path = 'lib'
 end

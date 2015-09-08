@@ -1,15 +1,22 @@
-require 'bundler'
-Bundler::GemHelper.install_tasks
-
+require 'bundler/gem_tasks'
 require 'rake/testtask'
 
+desc "Run the unit and functional remote tests"
+Rake::TestTask.new(:test) do |t|
+  t.libs << "test"
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = true
+end
+
 namespace :test do
-  Rake::TestTask.new(:units) do |t|
+  desc "Run unit tests"
+  Rake::TestTask.new(:unit) do |t|
     t.libs << "test"
     t.pattern = 'test/unit/**/*_test.rb'
     t.verbose = true
   end
 
+  desc "Run functional remote tests"
   Rake::TestTask.new(:remote) do |t|
     t.libs << "test"
     t.pattern = 'test/remote/*_test.rb'
@@ -17,8 +24,9 @@ namespace :test do
   end
 end
 
-desc "Default Task"
-task :default => 'test:units'
+desc "Open a pry session preloaded with this library"
+task :console do
+  sh 'ruby -Ilib -Itest test/console.rb'
+end
 
-desc "Run the unit and remote tests"
-task :test => ['test:units','test:remote']
+task :default => 'test'
